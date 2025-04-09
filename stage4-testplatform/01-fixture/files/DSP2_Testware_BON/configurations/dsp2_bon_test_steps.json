@@ -1,0 +1,1237 @@
+{
+    "Pre-Test": [
+        {
+            "Step":0,
+            "Test-Slot-Index":0,
+            "Name":"Print title to CLI",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Title"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":1,
+            "Test-Slot-Index":0,
+            "Name":"Print Subtitle for Pre-Test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[PRE-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":2,
+            "Test-Slot-Index":0,
+            "Name":"Obtain User Initials",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":true,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "UUT user", "Please enter your Initials and press RETURN"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":"[A-Za-z]+"
+            }
+        },
+        {
+            "Step":3,
+            "Test-Slot-Index":0,
+            "Name":"Ask User to Scan UUT",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":true,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "UUT_Std", "Please scan the UUT with the handheld scanner"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":".*/.*/[0-9]+/[0-9]+/[0-9]+"
+            }
+        },
+        {
+            "Step":4,
+            "Test-Slot-Index":0,
+            "Name":"Display Starting UUT Summary",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["getUUTdetails"],
+                "Deliver-To-Thread":"UI"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":5,
+            "Test-Slot-Index":0,
+            "Name":"Pause, wait for ENTER so user can verify UUT info",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "", "Ready to load UUT - please place unit into fixture and press RETURN when done."],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"EQUALS",
+                "Units":null,
+                "Compare-Value":""
+            }
+        }
+    ],
+
+    "Test-Steps":[
+        {
+            "Step":6,
+            "Test-Slot-Index":0,
+            "Name":"Print subtitale for main test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[MAIN-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":7,
+            "Test-Slot-Index":0,
+            "Name":"Inform user enabling PoE to UUT",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "PoE Supply to UUT", "Enabling"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":8,
+            "Test-Slot-Index":0,
+            "Name":"Enable PoE ON relay",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DIO_A",
+                "Action":"Method",
+                "Message":["writePin", "DIO_A_6", true],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":9,
+            "Test-Slot-Index":0,
+            "Name":"Inform user Starting 5VReg tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "5V Regulator Tests", "Starting"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":10,
+            "Test-Slot-Index":0,
+            "Name":"Test 5V Regulation",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["test5VReg"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"Unloaded",
+                    "Type":"GE",
+                    "Units":"V",
+                    "Compare-Value-Low":4.9
+                },
+                {
+                    "Name":"Loaded",
+                    "Type":"GE",
+                    "Units":"V",
+                    "Compare-Value-Low":4.8
+                }
+            ]
+        },
+        {
+            "Step":11,
+            "Test-Slot-Index":0,
+            "Name":"Show 5V Regulation Test Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":12,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting 3V3 regulator tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "3V3 Regulator Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":13,
+            "Test-Slot-Index":0,
+            "Name":"Test 3V3 Regulation",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["test3V3Reg"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"Unloaded",
+                    "Type":"GE",
+                    "Units":"V",
+                    "Compare-Value-Low":3.2
+                },
+                {
+                    "Name":"Loaded",
+                    "Type":"GE",
+                    "Units":"V",
+                    "Compare-Value-Low":3.2
+                }
+            ]
+        },
+        {
+            "Step":14,
+            "Test-Slot-Index":0,
+            "Name":"Show 3V3 Regulation Test Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":15,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting Alt BR test",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "Testing Alt PoE BR", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":16,
+            "Test-Slot-Index":0,
+            "Name":"Set PoE BR to Alternate",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DIO_A",
+                "Action":"Method",
+                "Message":["writePin", "DIO_A_4", true],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":17,
+            "Test-Slot-Index":0,
+            "Name":"Test 5V Presence with Alt. BR",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"ADC_A",
+                "Action":"Method",
+                "Message":["measureSignal", "GOLD_ADC_A_SE_4", false, 3.169506],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"GELE",
+                "Units":"V",
+                "Compare-Value-Low":4.9,
+                "Compare-Value-High":5.1
+            }
+        },
+        {
+            "Step":18,
+            "Test-Slot-Index":0,
+            "Name":"Show 5V Regulation Presence with inv. PoE",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":19,
+            "Test-Slot-Index":0,
+            "Name":"Set PoE BR to Defualt",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DIO_A",
+                "Action":"Method",
+                "Message":["writePin", "DIO_A_4", false],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":20,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting LED",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "LED Bias Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":21,
+            "Test-Slot-Index":0,
+            "Name":"LED Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["testLEDs"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"UART Bridge Reset",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":3.0,
+                    "Compare-Value-High":3.3
+                },
+                {
+                    "Name":"Backend Good",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":2.5,
+                    "Compare-Value-High":3.0
+                },
+                {
+                    "Name":"Backend Bad",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.7,
+                    "Compare-Value-High":2.1
+                },
+                {
+                    "Name":"5V Ind.",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.8,
+                    "Compare-Value-High":2.2
+                },
+                {
+                    "Name":"3V3 Ind.",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.7,
+                    "Compare-Value-High":2.1
+                }
+            ]
+        },
+        {
+            "Step":22,
+            "Test-Slot-Index":0,
+            "Name":"Show result of LED tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":23,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting GPS Current Sense Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "GPS Current Sense Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":24,
+            "Test-Slot-Index":0,
+            "Name":"GPS Antenna Load Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["testGPSLoad"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"Unloaded - Green",
+                    "Type":"LE",
+                    "Units":"V",
+                    "Compare-Value-High":0.1
+                },
+                {
+                    "Name":"Unloaded - Red",
+                    "Type":"LE",
+                    "Units":"V",
+                    "Compare-Value-High":0.1
+                },
+                {
+                    "Name":"Loaded - Green",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.8,
+                    "Compare-Value-High":2.2
+                },
+                {
+                    "Name":"Loaded - Red",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.8,
+                    "Compare-Value-High":2.2
+                }
+            ]
+        },
+        {
+            "Step":25,
+            "Test-Slot-Index":0,
+            "Name":"Show result of GPS load tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":26,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting Reset Circuit Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "RESET Circuit Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":27,
+            "Test-Slot-Index":0,
+            "Name":"Reset Circuit Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["testResetCircuit"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"Reset Net Initial",
+                    "Type":"EQUALS",
+                    "Units":"V",
+                    "Compare-Value":3.3
+                },
+                {
+                    "Name":"Reset LED Bias Initial",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":0.0,
+                    "Compare-Value-High":0.5
+                },
+                {
+                    "Name":"Reset Net Active",
+                    "Type":"EQUALS",
+                    "Units":"V",
+                    "Compare-Value":0
+                },
+                {
+                    "Name":"Reset LED Bias Active",
+                    "Type":"GELE",
+                    "Units":"V",
+                    "Compare-Value-Low":1.65,
+                    "Compare-Value-High":2.0
+                },
+                {
+                    "Name":"Reset Net Final",
+                    "Type":"EQUALS",
+                    "Units":"V",
+                    "Compare-Value":3.3
+                },
+                {
+                    "Name":"Reset Net Auto WDI",
+                    "Type":"EQUALS",
+                    "Units":"V",
+                    "Compare-Value":0.0
+                }
+            ]
+        },
+        {
+            "Step":28,
+            "Test-Slot-Index":0,
+            "Name":"Show result of Reset Circuit tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":29,
+            "Test-Slot-Index":0,
+            "Name":"Inform user of starting tests for SHT40",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "SHT40 Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":30,
+            "Test-Slot-Index":0,
+            "Name":"SHT40 Tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Multiple-Measurements":true,
+            "Payload":
+            {
+                "Thread-Name":"SHT40",
+                "Action":"Method",
+                "Message":["getTempHum", 0],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            [
+                {
+                    "Name":"Temperature",
+                    "Type":"GELE",
+                    "Units":"deg C",
+                    "Compare-Value-Low":10.0,
+                    "Compare-Value-High":40.0
+                },
+                {
+                    "Name":"Relative Humidity",
+                    "Type":"GELE",
+                    "Units":"%RH",
+                    "Compare-Value-Low":0.0,
+                    "Compare-Value-High":100.0
+                }
+            ]
+        },
+        {
+            "Step":31,
+            "Test-Slot-Index":0,
+            "Name":"Show result of SHT40 tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":32,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting GPS Version",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "Getting GPS VERSION", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":33,
+            "Test-Slot-Index":0,
+            "Name":"Read GPS FW Version",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"L26T",
+                "Action":"Method",
+                "Message":["getVersionInfo"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":"",
+                "Compare-Value":"[a-zA-Z0-9]+"
+            }
+        },
+        {
+            "Step":34,
+            "Test-Slot-Index":0,
+            "Name":"Show result GPS vserion",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":35,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting 1pps tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "GPS 1PPS Test over 30Sec", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":36,
+            "Test-Slot-Index":0,
+            "Name":"1PPS Quectel Line",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DSP2",
+                "Action":"Method",
+                "Message":["measure1PPS"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"GELE",
+                "Units":"COUNTS",
+                "Compare-Value-Low":29,
+                "Compare-Value-High":31
+            }
+        },
+        {
+            "Step":37,
+            "Test-Slot-Index":0,
+            "Name":"Show result of GPS PPS tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":38,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting GPS Antenna Connection tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "GPS Antenna Connection Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":39,
+            "Test-Slot-Index":0,
+            "Name":"GPS Antenna Connection",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"L26T",
+                "Action":"Method",
+                "Message":["getAntennaStatus"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":"",
+                "Compare-Value":"Connected"
+            }
+        },
+        {
+            "Step":40,
+            "Test-Slot-Index":0,
+            "Name":"Show result of GPS Antenna tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":41,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting GPS RESET",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "RESETTING GPS TO FACTORY SETTINGS", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":42,
+            "Test-Slot-Index":0,
+            "Name":"Reset Quectel Settings to Defualt",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"L26T",
+                "Action":"Method",
+                "Message":["resetToFactory"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":"",
+                "Compare-Value":"RESET"
+            }
+        },
+        {
+            "Step":43,
+            "Test-Slot-Index":0,
+            "Name":"Show result GPS RESET",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":44,
+            "Test-Slot-Index":0,
+            "Name":"Inform user starting SD card tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "SD Card Tests", "STARTING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":45,
+            "Test-Slot-Index":0,
+            "Name":"SD Card",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"SD",
+                "Action":"Method",
+                "Message":["sendAndGetCMD0"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"EQUALS",
+                "Units":"",
+                "Compare-Value":1
+            }
+        },
+        {
+            "Step":46,
+            "Test-Slot-Index":0,
+            "Name":"Show result of SD Card tests",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        }
+    ],
+
+    "Post-Test-Steps":[
+        {
+            "Step":47,
+            "Test-Slot-Index":0,
+            "Name":"Print Subtitle for Post-Test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[POST-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":48,
+            "Test-Slot-Index":0,
+            "Name":"Show pass fail",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportToUserPassFail"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":49,
+            "Test-Slot-Index":0,
+            "Name":"Ask user if they want to run another unit",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "ResetFixture", "Press RETURN to start over with another unit, or type 'CLOSE' followed by RETURN to shutdown"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":".*"
+            }
+        }
+    ]
+}

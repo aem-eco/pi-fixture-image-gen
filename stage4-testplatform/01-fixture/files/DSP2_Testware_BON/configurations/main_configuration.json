@@ -1,0 +1,76 @@
+{
+    "Fixture-Name":"AEM Test & Measurement Platform - LxDSP2.0 Bed-of-Nails",
+    "Fixture-Version":"1.0.0",
+    "Fixture-SN":"GLV2-4",
+
+    "Logging-Level":"INFO",
+    "Logging-Path":"/home/Test-Measurement-AEM/Testware_Logs/",
+
+    "System_Hardware":{
+        "GPIO_Controller":"/dev/gpiochip4",
+        "I2C_Buses":[1],
+        "SPI_Buses":[0],
+        "SERIAL_Ports":[
+            "COM1",
+            "COM2",
+            "COM3",
+            "COM4"
+        ]
+    },
+
+    "Periferial_Addresses":{
+        "DIO_A":34,
+        "ADC_A":20,
+        "ADC_B":22,
+        "UART_AB":82,
+        "UART_CD":87
+    },
+
+    "Periferal_Arguments":{
+        "SHT40_I2C_Address":68,
+        "DIO_A_Outputs":[
+            ["DIO_A_1", false],
+            ["DIO_A_2", false],
+            ["DIO_A_3", false],
+            ["DIO_A_4", false],
+            ["DIO_A_6", true],
+            ["DIO_A_8", false],
+            ["DIO_A_14", false],
+            ["DIO_A_16", false],
+            ["DIO_A_18", false],
+            ["DIO_A_20", false],
+            ["DIO_A_22", false]
+        ],
+        "SD_SS":["DIO_A_1"]
+    },
+
+    "Interface-Connection-Configuration":null,
+
+    "Test-Slots":1,
+
+    "Minimum_Requirements":{
+        "Hardware":{
+            "Goldilocks_Revision":2,
+            "Raspberry_Pi_Model":"Raspberry Pi Model 5",
+            "Active_Network_Conection":true
+        },
+        "Software":{
+            "AEM_Testware_Version":"1.0.0",
+            "WATS_Sequence_Version":1,
+            "Python":{
+                "Version":3.11,
+                "Modules":[
+                    "gpiod",
+                    "smbus"
+                ]
+            }
+        }
+    },
+
+    "Sub-Configurations":{
+        "Threading_Configuration":"dsp2_bon_threads_config.json",
+        "Test_Steps":"dsp2_bon_test_steps.json",
+        "Reporting-Configuration":"dsp2_reports_config.json",
+        "WATS-Reporting-Configuration":"dsp2_wats_config.json"
+    }
+}

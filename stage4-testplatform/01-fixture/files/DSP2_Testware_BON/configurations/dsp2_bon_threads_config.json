@@ -1,0 +1,68 @@
+{
+    "Threads":[
+        {
+            "Name":"UI",
+            "Reports-To":"MAIN THREAD",
+            "Priority":5,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"cliUI"
+        },
+        {
+            "Name":"DIO_A",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"DIO"
+        },
+        {
+            "Name":"ADC_A",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"ADC"
+        },
+        {
+            "Name":"ADC_B",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"ADC"
+        },
+        {
+            "Name":"DSP2",
+            "Reports-To":"MAIN THREAD",
+            "Priority":7,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"DSP2_Tests"
+        },
+        {
+            "Name":"L26T",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"Quectel_Serial"
+        },
+        {
+            "Name":"SHT40",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"SHT40"
+        },
+        {
+            "Name":"SD",
+            "Reports-To":"MAIN THREAD",
+            "Priority":8,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"SD"
+        }
+    ]
+}
