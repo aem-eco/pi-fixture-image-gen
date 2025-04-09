@@ -1,7 +1,1 @@
-deploy/*
-work/*
-config
-postrun.sh
-.pc
-*-pc
 *.pth
