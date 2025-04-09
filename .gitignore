@@ -4,4 +4,4 @@ config
 postrun.sh
 .pc
 *-pc
-.pth
+*.pth
