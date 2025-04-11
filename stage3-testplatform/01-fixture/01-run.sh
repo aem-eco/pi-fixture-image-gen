@@ -1,13 +1,13 @@
 #!/usr/bin/bash -e
 
 # Ensure a desktop folder is made
-install -v -o 1000 -g 1000 -m 666 -d "${ROOTFS_DIR}/home/Desktop"
+install -v --owner ${FIRST_USER_NAME} -g 1000 -m 666 -d "${ROOTFS_DIR}/home/Desktop"
 
 # Create copies of the test code in the new file-system
 # Also create desktop shortcuts to each of the applicable main.py files, starting their pyVenv
 for package in $TESTWARE_FOLDER_NAMES
 do
-    install -v -o 1000 -g 1000 -m 766 -D "${ROOTFS_DIR}/home/${package}" -t "files/${package}/*"
+    install -v --owner ${FIRST_USER_NAME} -g 1000 -m 766 -D "${ROOTFS_DIR}/home/${package}" -t "files/${package}/*"
 
     on_chroot << EOF
     touch "/home/${FIRST_USER_NAME}/Desktop/Start_${package}.sh"

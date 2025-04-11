@@ -1,1 +1,2 @@
 raspberrypi-archive-keyring
+${VERSION_CODENAME}-backports cockpit
