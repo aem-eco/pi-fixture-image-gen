@@ -1,27 +1,18 @@
 #!/usr/bin/bash -e
 
 # Create home folders required for testware
-on_chroot << EOF
-mkdir -p "/home/prod/LocalReports"
-mkdir -p "/home/prod/Testware_Logs"
-mkdir -p "/home/prod/AEM_Firmware"
-EOF
+install -v -o 1000 -g 1000 -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/LocalReports"
+install -v -o 1000 -g 1000 -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/Testware_Logs"
+install -v -o 1000 -g 1000 -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/AEM_Firmware"
 
 # Create the files for desktop config with permissions
-on_chroot << EOF
-mkdir -p "/home/prod/.config/pcmanfm/LXDE-pi"
-EOF
-install -m 644 files/pcmanfm.conf "${ROOTFS_DIR}/home/prod/.config/pcmanfm/LXDE-pi/"
-install -m 644 files/desktop-items-NOOP-1.conf "${ROOTFS_DIR}/home/prod/.config/pcmanfm/LXDE-pi/"
+install -m 644 "files/wallpaper.png" "${ROOTFS_DIR}/usr/share/aem-defualt-wallpaper/wallpaper.png"
+install -v -o 1000 -g 1000 -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/pcmanfm/LXDE-pi/"
+install -v -o 1000 -g 1000 -m 666 "files/desktop-items-NOOP-1.conf" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/pcmanfm/LXDE-pi/desktop-items-NOOP-1.conf"
+install -v -o 1000 -g 1000 -m 666 "files/pcmanfm.conf" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/pcmanfm/LXDE-pi/pcmanfm.conf"
 
 # Files needed for STM32 Programmer
-#on_chroot << EOF
-#mkdir -p "/home/STM32CubeProgrammer"
-#EOF
-cp -r "/home/Test-Measurement-AEM/stm32cubeprog-linux-arm/STM32CubeProgrammer" "${ROOTFS_DIR}/home"
-on_chroot << EOF
-chmod 744 "/home/STM32CubeProgrammer/bin/STM32_Programmer_CLI"
-EOF
+install -v -o 1000 -g 1000 -m 766 -D "${ROOTFS_DIR}/home/STM32CubeProgrammer" -t "/home/Test-Measurement-AEM/stm32cubeprog-linux-arm/STM32CubeProgrammer/*"
 
 # Create python venv and install API key file
 # activation of the venv and installation of packages
@@ -38,7 +29,7 @@ pip install requests --no-input
 pip install termcolor --no-input
 deactivate
 EOF
-install -m 644 files/_env_vars.pth "${ROOTFS_DIR}/home/prod/pyVenv/lib/python3.11/site-packages/_env_vars.pth"
+install -v -o 1000 -g 1000 -m 666 files/_env_vars.pth "${ROOTFS_DIR}/home/prod/pyVenv/lib/python3.11/site-packages/_env_vars.pth"
 
 # Install the first run shell script to run on the first OS boot
 # Runs the tasks that require the OS to be built

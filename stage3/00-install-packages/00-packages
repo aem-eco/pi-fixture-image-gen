@@ -8,7 +8,8 @@ gldriver-test
 fonts-droid-fallback
 fonts-liberation2
 obconf
-raindrop
-libcamera-tools
-rpicam-apps
 vulkan-tools mesa-vulkan-drivers
+rpi-connect
+rpi-imager
+tree
+realvnc-vnc-server
