@@ -1,1 +1,4 @@
 *.pth
+/work/*
+/deploy/*
+config
