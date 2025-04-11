@@ -1,0 +1,10 @@
+{
+    "Type":"T",
+    "Process-Code":2,
+    "Process-Name":"Firmware Upload",
+    "Location":"Remote Dev Station",
+    "Purpose":"Bed of Nails LxDSP BASE test before assembly",
+    "Machine-Name":"GLV2-1",
+
+    "WATS-Python-Process-Name":"src.Core_Testware.WATS.Processes.Test_Process"
+}

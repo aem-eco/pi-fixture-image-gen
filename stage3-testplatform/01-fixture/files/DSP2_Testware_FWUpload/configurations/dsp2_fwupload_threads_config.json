@@ -1,0 +1,20 @@
+{
+    "Threads":[
+        {
+            "Name":"UI",
+            "Reports-To":"MAIN THREAD",
+            "Priority":5,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"cliUI"
+        },
+        {
+            "Name":"DModule",
+            "Reports-To":"MAIN THREAD",
+            "Priority":9,
+            "Duplex":true,
+            "Logging-Level":"INFO",
+            "Class":"DModule"
+        }
+    ]
+}

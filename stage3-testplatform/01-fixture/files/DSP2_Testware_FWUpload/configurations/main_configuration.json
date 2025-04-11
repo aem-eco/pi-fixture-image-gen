@@ -1,0 +1,46 @@
+{
+    "Fixture-Name":"AEM Test & Measurement Platform - LxDSP2.0 FW Upload",
+    "Fixture-Version":"1.0.0",
+    "Fixture-SN":"GLV2-4",
+
+    "Logging-Level":"INFO",
+    "Logging-Path":"/home/Test-Measurement-AEM/Testware_Logs/",
+
+    "Firmware_Location":[
+        "/home/Test-Measurement-AEM/AEM_Firmware/DSP2/alpha_release_BL_v1_0_0_2.hex",
+        "/home/Test-Measurement-AEM/AEM_Firmware/DSP2/alpha_release_APP_v5_0_0_24.hex"
+    ],
+
+    "Non-Std-Barcode-Additional-Data":{
+        "Model":"7345.620",
+        "Rev":"C"
+    },
+
+    "Test-Slots":1,
+
+    "Minimum_Requirements":{
+        "Hardware":{
+            "Goldilocks_Revision":2,
+            "Raspberry_Pi_Model":"Raspberry Pi Model 5",
+            "Active_Network_Conection":true
+        },
+        "Software":{
+            "AEM_Testware_Version":"1.0.0",
+            "WATS_Sequence_Version":1,
+            "Python":{
+                "Version":3.11,
+                "Modules":[
+                    "gpiod",
+                    "smbus"
+                ]
+            }
+        }
+    },
+
+    "Sub-Configurations":{
+        "Threading_Configuration":"dsp2_fwupload_threads_config.json",
+        "Test_Steps":"dsp2_fwupload_test_steps.json",
+        "Reporting-Configuration":"dsp2_reports_config.json",
+        "WATS-Reporting-Configuration":"dsp2_wats_config.json"
+    }
+}

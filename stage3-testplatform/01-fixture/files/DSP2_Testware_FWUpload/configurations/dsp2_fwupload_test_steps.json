@@ -1,0 +1,780 @@
+{
+    "Pre-Test":[
+        {
+            "Step":0,
+            "Test-Slot-Index":0,
+            "Name":"Print title to CLI",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Title"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":1,
+            "Test-Slot-Index":0,
+            "Name":"Print Subtitle for Pre-Test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[PRE-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":2,
+            "Test-Slot-Index":0,
+            "Name":"Obtain User Initials",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":true,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "UUT user", "Please enter your Initials and press RETURN"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":"[A-Za-z]+"
+            }
+        },
+        {
+            "Step":3,
+            "Test-Slot-Index":0,
+            "Name":"Ask User to Scan UUT",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":true,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "UUT_nStd", "Please scan the UUT with the handheld scanner"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":"[0-9]+.[0-9]+"
+            }
+        },
+        {
+            "Step":4,
+            "Test-Slot-Index":0,
+            "Name":"Ask User to Scan sub UUT",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_subUUTs", true],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":5,
+            "Test-Slot-Index":0,
+            "Name":"Display Starting UUT Summary",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["getUUTdetails"],
+                "Deliver-To-Thread":"UI"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":6,
+            "Test-Slot-Index":0,
+            "Name":"Pause, wait for ENTER so user can verify UUT info",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "", "Ready to start programming - please connect USB cable and press RETURN when done."],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"EQUALS",
+                "Units":null,
+                "Compare-Value":""
+            }
+        }
+    ],
+
+    "Test-Steps":[
+        {
+            "Step":7,
+            "Test-Slot-Index":0,
+            "Name":"Print subtitale for main test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[MAIN-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":8,
+            "Test-Slot-Index":0,
+            "Name":"Inform user ready to enter setup util",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "DModule Setup Utility", "Detecting"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":9,
+            "Test-Slot-Index":0,
+            "Name":"Waiting for setup util cli",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["checkSetupUtilEntered"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"BOOL",
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":10,
+            "Test-Slot-Index":0,
+            "Name":"Inform user getting device information",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "DModule Information", "Gathering"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":11,
+            "Test-Slot-Index":0,
+            "Name":"Get sub unit information",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["getBoardInformation"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":12,
+            "Test-Slot-Index":0,
+            "Name":"Inform user uploading BOOTLOADER",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "BOOTLOADER", "UPLOADING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":13,
+            "Test-Slot-Index":0,
+            "Name":"Set flow control",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["setupForProgramming"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":14,
+            "Test-Slot-Index":0,
+            "Name":"Upload BOOTLOADER",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["uploadBootloader"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"BOOL",
+                "Units":null,
+                "Compare-Value":true
+            }
+        },
+        {
+            "Step":15,
+            "Test-Slot-Index":0,
+            "Name":"Show BOOTLOADER Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":16,
+            "Test-Slot-Index":0,
+            "Name":"Inform user uploading APPLICATION",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "APPLICATION", "UPLOADING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":17,
+            "Test-Slot-Index":0,
+            "Name":"Upload APPLICATION",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["uploadApplication"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"BOOL",
+                "Units":null,
+                "Compare-Value":true
+            }
+        },
+        {
+            "Step":18,
+            "Test-Slot-Index":0,
+            "Name":"Show APPLICATION Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":19,
+            "Test-Slot-Index":0,
+            "Name":"Get user to install jumper and wait",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "", "When ready to install Watchdog jumper and press RETURN (DO NOT INSTALL BEFORE PRESSING RETURN!)"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":""
+            }
+        },
+        {
+            "Step":20,
+            "Test-Slot-Index":0,
+            "Name":"Inform user BOOT MONITOR",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "Boot Process", "MONITORING"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":21,
+            "Test-Slot-Index":0,
+            "Name":"Monitor Boot process",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["monitorBootProcess"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"BOOL",
+                "Units":null,
+                "Compare-Value":true
+            }
+        },
+        {
+            "Step":22,
+            "Test-Slot-Index":0,
+            "Name":"Show BOOT Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":23,
+            "Test-Slot-Index":0,
+            "Name":"Inform user getting mac address",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "MAC Address", "Getting"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":24,
+            "Test-Slot-Index":0,
+            "Name":"MAC Address",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["getMACaddress"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":".*[A-Z0-9]+.[A-Z0-9]+.[A-Z0-9]+.[A-Z0-9]+.[A-Z0-9]+.[A-Z0-9]+.*"
+            }
+        },
+        {
+            "Step":25,
+            "Test-Slot-Index":0,
+            "Name":"Show MAC Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":26,
+            "Test-Slot-Index":0,
+            "Name":"Inform user setting DModule SN",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "DModule Serial Number", "Setting"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":27,
+            "Test-Slot-Index":0,
+            "Name":"DModule Serial Number",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["sendUUTObjectToProcess", "DModule", "setAEMsn"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":28,
+            "Test-Slot-Index":0,
+            "Name":"Inform user getting DModule SN to verify",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Information_No_Spacer", "DModule Serial Number", "Verifying"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":29,
+            "Test-Slot-Index":0,
+            "Name":"DModule Serial Number",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":true,
+            "Payload":
+            {
+                "Thread-Name":"DModule",
+                "Action":"Method",
+                "Message":["verifyAEMsn"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"BOOL",
+                "Units":null,
+                "Compare-Value":true
+            }
+        },
+        {
+            "Step":30,
+            "Test-Slot-Index":0,
+            "Name":"Show SN set Results",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportLastStep"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":31,
+            "Test-Slot-Index":0,
+            "Name":"Display Starting UUT Summary",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["getUUTdetails"],
+                "Deliver-To-Thread":"UI"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        }
+    ],
+
+    "Post-Test-Steps":[
+        {
+            "Step":32,
+            "Test-Slot-Index":0,
+            "Name":"Print Subtitle for Post-Test steps",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["print_Subtitle", "[POST-TEST PHASE]"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":33,
+            "Test-Slot-Index":0,
+            "Name":"Show pass fail",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"MAIN THREAD",
+                "Action":"Method",
+                "Message":["reportToUserPassFail"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":null,
+                "Units":null,
+                "Compare-Value":null
+            }
+        },
+        {
+            "Step":34,
+            "Test-Slot-Index":0,
+            "Name":"Ask user if they want to run another unit",
+            "Blocking-Action":true,
+            "Stop-On-Fail":false,
+            "Should-Retry":false,
+            "Save-Result":false,
+            "Payload":
+            {
+                "Thread-Name":"UI",
+                "Action":"Method",
+                "Message":["get_User_Input", "ResetFixture", "Press RETURN to start over with another unit, or type 'CLOSE' followed by RETURN to shutdown"],
+                "Deliver-To-Thread":"MAIN THREAD"
+            },
+            "Expect":
+            {
+                "Type":"REGEX",
+                "Units":null,
+                "Compare-Value":".*"
+            }
+        }
+    ]
+}

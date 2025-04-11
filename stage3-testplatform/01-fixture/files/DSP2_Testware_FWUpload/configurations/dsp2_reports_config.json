@@ -1,0 +1,15 @@
+{
+    "CSV":{
+        "Local-Directory":"/home/Test-Measurement-AEM/LocalReports",
+        "Cloud-Endpoint":"TestFixture%20Reports/LxDSP2"
+    },
+    "Markdown":{
+        "Local-Directory":"",
+        "Cloud-Endpoint":""
+    },
+    "PDF":{
+        "Local-Directory":"",
+        "Cloud-Endpoint":""
+    },
+    "Logs":"TestFixture%20Logs"
+}

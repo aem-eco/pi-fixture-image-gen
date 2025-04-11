@@ -1,0 +1,7 @@
+python3.11
+python3-venv
+libusb-1.0-0-dev
+libxrender1
+binutils
+libgtk-4-1
+libglib2.0-dev
